@@ -11,7 +11,7 @@ This document outlines the steps taken to set up an SSH key pair, configure SSH 
    ssh-keygen -t ~/.ssh/demo_ed25519 -C "DA live call demo key"
    
 2. Used ssh-copy-id to add the public key to the remote server for passwordless login:
-   ssh-copy-id bmukashevagulbanur@116.203.118.116
+   ssh-copy-id username@host
 
 3. Updated the SSH server configuration file (/etc/ssh/sshd_config) to allow login only via SSH key, disabling password-based login:
    "PasswordAuthentication" = no
@@ -33,7 +33,7 @@ This document outlines the steps taken to set up an SSH key pair, configure SSH 
 ## 3. SSH Alias Setup
 
   Created an SSH alias to avoid using the full path to the SSH key every time:
-   alias dal_connect="ssh -o StrictHostKeyChecking=False -i ~/home/macUserName/.ssh/id_ed25519 bmukashevagulbanur@116.203.118.116
+   alias dal_connect="ssh -o StrictHostKeyChecking=False -i ~/home/macUserName/.ssh/id_ed25519 username@host
 
 ## 4. Adding SSH Key to GitHub
 
