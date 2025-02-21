@@ -22,11 +22,11 @@ This document outlines the steps taken to set up an SSH key pair, configure SSH 
 5. Successfully logged in to the server using the SSH key (passwordless login).
 
 
-## 2. Nginx Configuration
+## 2. Install Webserver NGINX Configuration
 
-1. Installed Nginx and set up a basic webpage.
+1. Installed Webserver NGINX and set up a basic webpage.
 2. Created a custom Nginx page by editing the default HTML content in /var/www/html/index.html:
-   Updated the page content to match project requirements.
+   Updated the page content in the configuration.
 3. Ensured the Nginx service was running:
    sudo systemctl start nginx
 
