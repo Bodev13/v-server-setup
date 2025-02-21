@@ -4,6 +4,16 @@
 
 This document outlines the steps taken to set up an SSH key pair, configure SSH authentication, set up Nginx, and link the SSH key with GitHub.
 
+- [x] Generated SSH key  
+- [x] Added public key to server  
+- [x] Configured SSH access / updated the config file
+- [x] SSH Alias setup
+- [x] Set up Nginx web page  
+- [x] Added SSH key to GitHub  
+- [x] Configured Git username and email
+- [x] Authenticated with GitHub
+- [x] Cloned Git Repository
+
 ## 1. SSH Key Pair Setup
 
 1. Created an SSH key pair using the command:
