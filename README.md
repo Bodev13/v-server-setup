@@ -53,6 +53,10 @@ This document outlines the steps taken to set up an SSH key pair, configure SSH 
   Verified SSH authentication with GitHub by running:
   ssh -T git@github.com
 
+## 7. Cloned Git Repository
+   git clone git@github.com:Bodev13/v-server-setup.git
+
+
 
 
 
