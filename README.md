@@ -66,6 +66,8 @@ This document outlines the steps taken to set up an SSH key pair, configure SSH 
 ## 7. Cloned Git Repository
    git clone git@github.com:Bodev13/v-server-setup.git
 
+## 8. Created a pull request with a new test-branch
+
 
 
 
