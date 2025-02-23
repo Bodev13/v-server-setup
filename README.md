@@ -41,8 +41,8 @@ This document outlines the steps taken to set up an SSH key pair, configure SSH 
 
 ```bash
    /etc/ssh/sshd_config
-   "PasswordAuthentication" = no
 ```
+1. In the config file changed the "PasswordAuthentication" to "no"
 
 1. Restarted the SSH service to apply the changes:
 
@@ -63,12 +63,12 @@ This document outlines the steps taken to set up an SSH key pair, configure SSH 
 1. Checking if the alias is existing
    
 ```bash
-alias | grep dal
+   alias | grep dal
 ```
 1. Testing that a login with alias is working:
 
 ```bash
-dal_connect
+   dal_connect
 ```
 
 ## Set up Nginx webserver 
