@@ -4,67 +4,139 @@
 
 This document outlines the steps taken to set up an SSH key pair, configure SSH authentication, set up Nginx, and link the SSH key with GitHub.
 
-- [x] Generated SSH key  
-- [x] Added public key to server  
-- [x] Configured SSH access / updated the config file
-- [x] SSH Alias setup
-- [x] Set up Nginx web page  
-- [x] Added SSH key to GitHub  
-- [x] Configured Git username and email
-- [x] Authenticated with GitHub
-- [x] Cloned Git Repository
+- [x] [Generated SSH key](generated-ssh-key)  
+- [x] [Added public key to server](added-public-key-to-server)  
+- [x] [Configured SSH access / updated the config file](configured-ssh-access)
+- [x] [SSH Alias setup](ssh-alias-setup)
+- [x] [Set up Nginx web page](set-up-nginx-web-page)
+- [x] [Added SSH key to GitHub](adding-ssh-key-to-github)
+- [x] [Configuring Git on the Server](configuring-git-on-the-server)
+- [x] [Authenticated with GitHub](authenticated-with-github) 
+- [x] [Cloned Git Repository](cloned-git-repository)
 
-## 1. SSH Key Pair Setup
+## Generated SSH key
 
-1. Created an SSH key pair using the command:
+   Created an SSH key pair using the command:
 
+```bash
    ssh-keygen -t ~/.ssh/demo_ed25519 -C "DA live call demo key"
-   
-2. Used ssh-copy-id to add the public key to the remote server for passwordless login:
+```
+
+## Added public key to server
+
+   1. Used ssh-copy-id to add the public key to the remote server for passwordless login:
+
+```bash
    ssh-copy-id username@host
+```
+   1. Test ssh connection before disabling password-based login
 
-3. Updated the SSH server configuration file (/etc/ssh/sshd_config) to allow login only via SSH key, disabling password-based login:
+```bash
+   ssh servername@host
+```
+
+## Configured SSH access
+
+1. Updated the SSH server configuration file to allow login only via SSH key, disabling password-based login:
+
+```bash
+   /etc/ssh/sshd_config
    "PasswordAuthentication" = no
+```
 
-4. Restarted the SSH service to apply the changes:
+1. Restarted the SSH service to apply the changes:
+
+```bash
    sudo systemctl restart sshd
+```
 
-5. Successfully logged in to the server using the SSH key (passwordless login).
+1. Successfully logged in to the server using the SSH key (passwordless login).
 
 
-## 2. Install Webserver NGINX Configuration
+## SSH Alias Setup
 
-1. Installed Webserver NGINX and set up a basic webpage.
-2. Created a custom Nginx page by editing the default HTML content in /var/www/html/index.html:
-   Updated the page content in the configuration.
-3. Ensured the Nginx service was running:
-   sudo systemctl start nginx
+1. Created an SSH alias to avoid using the full path to the SSH key every time:
 
-## 3. SSH Alias Setup
+```bash
+   alias dal_connect="ssh -o StrictHostKeyChecking=False -i ~/Users/macUserName/.ssh/id_ed25519 username@host
+   exit
+```
+2. Testing that a login with alias is working:
 
-  Created an SSH alias to avoid using the full path to the SSH key every time:
-   alias dal_connect="ssh -o StrictHostKeyChecking=False -i ~/home/macUserName/.ssh/id_ed25519 username@host
+```bash
+dal_connect / or dal
+```
 
-## 4. Adding SSH Key to GitHub
+## Set up Nginx webserver 
 
-1. Added the public SSH key to GitHub to authenticate Git operations from the server:
-    Retrieved the public key using:
+1. Installed NGINX package and set up a basic webpage:
+
+```bash
+sudo apt install nginx -y
+```
+
+1. Created a custom Nginx page by editing the default HTML content
+   
+```bash
+   sudo mkdir var/www/alternatives
+   sudo touch /var/www/alternatives/alternate-index.html
+```
+1. Updated the page content in the configuration:
+
+```bash
+   sudo nano /etc/nginx/sites-enabled/alternatives
+```
+1. Added server blocks with port 8081 and html
+
+1. Ensured the Nginx service was running:
+   
+```bash
+   sudo service nginx restart
+```
+
+1. Opening the NGINX webpage using the IP address
+1. Adding a port 8081 to see the changed HTML page after updating the configuration:
+   
+```bash
+   localhost:8081
+```
+
+1. Testing that NGNIX webpage directs to a 404 page:
+   
+```bash
+   localhost:8081/non-existent
+```
+
+## Adding SSH Key to GitHub
+
+1. Added the public SSH key to GitHub to authenticate Git operations from the server under "Settings > SSH and GPG Keys".
+1. Retrieved the public key using:
+```bash
      cat ~/.ssh/id_ed25519.pub
-2. Added the SSH public key to GitHub under Settings > SSH and GPG Keys.
+```
 
-## 5. Configuring Git on the Server
+## Configuring Git on the Server
 
   Configured Git on the server to use the same username and email as on GitHub for consistency:
+
+```bash
    git config --global user.name "GitHub Name"
    git config --global user.email "my-email@example.com"
+```
 
-## 6. Successfully Authenticated with GitHub
+## Authenticated with GitHub
 
   Verified SSH authentication with GitHub by running:
-  ssh -T git@github.com
 
-## 7. Cloned Git Repository
+```bash
+  ssh -T git@github.com
+```
+
+## Cloned Git Repository
+
+```bash
    git clone git@github.com:Bodev13/v-server-setup.git
+```
 
 
 
