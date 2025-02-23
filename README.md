@@ -4,15 +4,15 @@
 
 This document outlines the steps taken to set up an SSH key pair, configure SSH authentication, set up Nginx, and link the SSH key with GitHub.
 
-- [x] [Generated SSH key](generated-ssh-key)  
-- [x] [Added public key to server](added-public-key-to-server)  
-- [x] [Configured SSH access / updated the config file](configured-ssh-access)
-- [x] [SSH Alias setup](ssh-alias-setup)
-- [x] [Set up Nginx web page](set-up-nginx-web-page)
-- [x] [Added SSH key to GitHub](adding-ssh-key-to-github)
-- [x] [Configuring Git on the Server](configuring-git-on-the-server)
-- [x] [Authenticated with GitHub](authenticated-with-github) 
-- [x] [Cloned Git Repository](cloned-git-repository)
+- [x] [Generated SSH key](#generated-ssh-key)  
+- [x] [Added public key to server](#added-public-key-to-server)  
+- [x] [Configured SSH access / updated the config file](#configured-ssh-access)
+- [x] [SSH Alias setup](#ssh-alias-setup)
+- [x] [Set up Nginx web page](#set-up-nginx-web-page)
+- [x] [Added SSH key to GitHub](#adding-ssh-key-to-github)
+- [x] [Configuring Git on the Server](#configuring-git-on-the-server)
+- [x] [Authenticated with GitHub](#authenticated-with-github) 
+- [x] [Cloned Git Repository](#cloned-git-repository)
 
 ## Generated SSH key
 
@@ -58,13 +58,17 @@ This document outlines the steps taken to set up an SSH key pair, configure SSH 
 1. Created an SSH alias to avoid using the full path to the SSH key every time:
 
 ```bash
-   alias dal_connect="ssh -o StrictHostKeyChecking=False -i ~/Users/macUserName/.ssh/id_ed25519 username@host
-   exit
+   alias dal_connect="ssh -o StrictHostKeyChecking=False -i ~/Users/macUserName/.ssh/id_ed25519 username@host"
 ```
-2. Testing that a login with alias is working:
+1. Checking if the alias is existing
+   
+```bash
+alias | grep dal
+```
+1. Testing that a login with alias is working:
 
 ```bash
-dal_connect / or dal
+dal_connect
 ```
 
 ## Set up Nginx webserver 
