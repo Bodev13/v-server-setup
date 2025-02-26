@@ -105,12 +105,6 @@ sudo apt install nginx -y
    localhost:8081
 ```
 
-1. Testing that NGNIX webpage directs to a 404 page:
-   
-```bash
-   localhost:8081/non-existent
-```
-
 ## Adding SSH Key to GitHub
 
 1. Added the public SSH key to GitHub to authenticate Git operations from the server under "Settings > SSH and GPG Keys".
